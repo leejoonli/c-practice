@@ -4,14 +4,14 @@
 
 int main() {
     // variables
-    char *cypher[26];
-    int i, j = ARRAY_SIZE(cypher);
+    char *cypher;
+    int i = 0, j;
 
     // get cypher input
     printf("Enter cypher key: \n");
-    fgets(cypher, sizeof(cypher), stdin);
+    fgets(cypher, 27, stdin);
     /*printf("%s\n", cypher);*/
-    for(i = 0; i < j; i++) {
+    for(i = 0; i < 27; i++) {
         printf("%c", cypher[i]);
     }
 
