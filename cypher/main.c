@@ -29,29 +29,30 @@ int str_letter(char arr[], int arr_length) {
 
 int main() {
     // variables
-    char cypher[27];
-    char input[256];
-    int i = 0, j = ARRAY_SIZE(cypher);
+    char key[27];
+    char plain_text[256];
+    char cypher_text[256];
+    int i = 0, j = ARRAY_SIZE(key);
 
     // get cypher input
     printf("Enter cypher key: \n");
-    fgets(cypher, j, stdin);
+    fgets(key, j, stdin);
 
     // check cypher input
         // check length on input
-    if(str_length(cypher) != 26) {
+    if(str_length(key) != 26) {
         printf("Cypher key needs to be 26 characters");
         return 1;
     }
         // check if input has any char that isn't a letter in the alphabet
-    if(str_letter(cypher, j) == 1) {
+    if(str_letter(key, j) == 1) {
         printf("Cypher key must contain only letters\n");
         return 1;
     }
 
     // get user text
     printf("Enter phrase you wanted encrypted: ");
-    fgets(input, 255, stdin);
+    fgets(plain_text, 255, stdin);
 
     // cipher user text
 
