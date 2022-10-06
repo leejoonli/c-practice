@@ -8,10 +8,20 @@ int str_length(char arr[]) {
     return i;
 }
 
-int str_letter(char arr[]) {
-    for(int i = 0; arr[i] != '\0'; i++) {
-        if((arr[i] < 64 && arr[i] > 91) || arr[i] < 96 && arr[i] > 123) {
+int str_letter(char arr[], int arr_length) {
+    // check string for non letters
+    for(int i = 0; i < arr_length; i++) {
+        if(arr[i] == '\0' && i == 26) {
+            break;
+        }
+        else if(arr[i] < 65 || (arr[i] > 90 && arr[i] < 97) || arr[i] > 122) {
             return 1;
+        }
+    }
+    // lower case string
+    for(int i = 0; i < arr_length; i++) {
+        if(arr[i] < 97) {
+            arr[i] = arr[i] + 32;
         }
     }
     return 0;
@@ -20,15 +30,11 @@ int str_letter(char arr[]) {
 int main() {
     // variables
     char cypher[27];
-    int i = 0, j = ARRAY_SIZE(cypher), k;
+    int i = 0, j = ARRAY_SIZE(cypher);
 
     // get cypher input
     printf("Enter cypher key: \n");
     fgets(cypher, j, stdin);
-    /*printf("%s\n", cypher);
-    for(i = 0; i < j; i++) {
-        printf("%c", cypher[i]);
-    }*/
 
     // check cypher input
         // check length on input
@@ -37,11 +43,10 @@ int main() {
         return 1;
     }*/
         // check if input has any char that isn't a letter in the alphabet
-    if(str_letter(cypher) == 1) {
+    if(str_letter(cypher, j) == 1) {
         printf("Cypher key must contain only letters\n");
         return 1;
     }
-
 
     // get user text
 
