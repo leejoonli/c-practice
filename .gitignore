@@ -4,4 +4,10 @@
 /cypher/cypher.layout
 /cypher/main.exe
 /cypher/main.o
-/test/bin
+/mario/bin
+/mario/obj
+/mario/mario.cbp
+/data-struct-c/linked-list/bin
+/data-struct-c/linked-list/obj
+/data-struct-c/linked-list/linked-list.cbp
+/data-struct-c/linked-list/linked-list.layout
