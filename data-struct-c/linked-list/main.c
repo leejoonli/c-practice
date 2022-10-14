@@ -33,6 +33,7 @@ void insert_first(int key, int data) {
     // set node data
     new_node->key = key;
     new_node->data = data;
+    new_node->next = NULL;
 
     // add node to beginning of list and move head to next
     new_node->next = head;
@@ -45,6 +46,7 @@ void insert_last(int key, int data) {
 
     new_node->key = key;
     new_node->data = data;
+    new_node->next = NULL;
 
     if(head == NULL) {
         head = new_node;
@@ -54,14 +56,15 @@ void insert_last(int key, int data) {
     // fix this infinite loop
     struct node *walker = head;
     while(walker != NULL) {
-        printf("hello world");
         walker = walker->next;
     }
+    walker = new_node;
     return;
 }
 
 int main() {
     insert_last(1, 10);
     insert_last(2, 20);
+    print_list();
     return 0;
 }
