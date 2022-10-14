@@ -25,6 +25,27 @@ void print_list() {
    printf(" ]");
 }
 
+// function to check if list is empty
+int check_list() {
+    if(head != NULL) {
+        return 0;
+    }
+    else {
+        return 1;
+    }
+}
+
+// function to check how many items in list
+int list_length() {
+    int count = 0;
+    struct node *walker = head;
+    while(walker != NULL) {
+        count++;
+        walker = walker->next;
+    }
+    return count;
+}
+
 // insert node at beginning of list
 void insert_first(int key, int data) {
     // create new node
@@ -62,20 +83,9 @@ void insert_last(int key, int data) {
     return;
 }
 
-int check_list() {
-    if(head != NULL) {
-        return 0;
-    }
-    else {
-        return 1;
-    }
-}
-
 int main() {
-    /*insert_last(1, 10);
-    insert_last(2, 20);
-    printf("%d", head->data);*/
-    insert_first(1,10);
-    printf("%i", check_list());
+    insert_first(2, 20);
+    insert_first(1, 10);
+    printf("%i", list_length());
     return 0;
 }
