@@ -75,17 +75,18 @@ void insert_last(int key, int data) {
 
     // not setting new node to next
     struct node *walker = head;
-    printf("%p, %p", head, walker);
-    /*while(!walker->next) {
+    //printf("%p, %p", head, walker);
+    while(walker != NULL) {
+        printf("hello world");
         walker = walker->next;
     }
-    walker = new_node;*/
+    walker = new_node;
     return;
 }
 
 int main() {
-    insert_first(2, 20);
-    insert_first(1, 10);
-    printf("%i", list_length());
+    insert_last(1, 10);
+    insert_last(2, 20);
+    print_list();
     return 0;
 }
