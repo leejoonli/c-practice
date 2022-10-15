@@ -73,20 +73,32 @@ void insert_last(int key, int data) {
         return;
     }
 
-    // not setting new node to next
+    // traverse to end of list
     struct node *walker = head;
     while(walker->next != NULL) {
-        printf("hello world");
         walker = walker->next;
     }
+
+    // insert new node at end of list
     walker->next = new_node;
     return;
+}
+
+struct node* delete_first() {
+    struct node* temp = head;
+
+    head = head->next;
+
+    return temp;
 }
 
 int main() {
     insert_last(1, 10);
     insert_last(2, 20);
     insert_last(3, 30);
+    insert_last(4, 40);
+    struct node* test = delete_first();
+    printf("%i", test->data);
     print_list();
     return 0;
 }
