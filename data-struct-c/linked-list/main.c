@@ -54,6 +54,7 @@ void insert_first(int key, int data) {
     // set node data
     new_node->key = key;
     new_node->data = data;
+    new_node->next = NULL;
 
     // add node to head and move head to next
     new_node->next = head;
@@ -85,11 +86,38 @@ void insert_last(int key, int data) {
 }
 
 struct node* delete_first() {
+    // create temp node to return
     struct node* temp = head;
-
+    // set head node to head->next
     head = head->next;
-
     return temp;
+}
+
+struct node* delete_at(int key) {
+    struct node* walker = head;
+    struct node* temp = NULL;
+
+    if(head == NULL) {
+        return NULL;
+    }
+
+    while(walker->key != key) {
+        if(walker->next == NULL) {
+            return NULL;
+        }
+        else {
+            temp = walker;
+            walker = walker->next;
+        }
+    }
+
+    if(walker == head) {
+        head = head->next;
+    }
+    else {
+        temp->next = walker->next;
+    }
+    return walker;
 }
 
 int main() {
@@ -97,8 +125,8 @@ int main() {
     insert_last(2, 20);
     insert_last(3, 30);
     insert_last(4, 40);
-    struct node* test = delete_first();
-    printf("%i", test->data);
+    struct node* test = delete_at(3);
+    printf("%i", test->key);
     print_list();
     return 0;
 }
