@@ -45,12 +45,16 @@ int pop(struct stack* stack) {
 
 // is empty
 int check_empty(struct stack* stack) {
-
+    if(stack->top == -1) {
+        return 0;
+    } else {
+        return 1;
+    }
 }
 
 // size
 int check_size(struct stack* stack) {
-
+    return stack->top+1;
 }
 
 int main() {
@@ -58,5 +62,6 @@ int main() {
     push(stack, 1);
     push(stack, 2);
     int i = pop(stack);
+    printf("%i", check_size(stack));
     return 0;
 }
