@@ -120,13 +120,32 @@ struct node* delete_at(int key) {
     return walker;
 }
 
+struct node* find(int key) {
+    struct node* walker = head;
+
+    if(head == NULL) {
+        return NULL;
+    }
+
+    while(walker->key != key) {
+        if(walker->key == NULL) {
+            return NULL;
+        } else {
+            walker = walker->next;
+        }
+    }
+
+    return walker;
+}
+
 int main() {
     insert_last(1, 10);
     insert_last(2, 20);
     insert_last(3, 30);
     insert_last(4, 40);
     struct node* test = delete_at(3);
-    printf("%i", test->key);
+    struct node* temp = find(2);
+    printf("%d", temp->key);
     print_list();
     return 0;
 }
