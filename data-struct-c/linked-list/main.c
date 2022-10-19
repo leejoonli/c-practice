@@ -138,14 +138,41 @@ struct node* find(int key) {
     return walker;
 }
 
+void sort() {
+    int i,j,k, size, temp_key, temp_data;
+    struct node* curr;
+    struct node* next;
+
+    size = list_length();
+    k = size;
+
+    for(i = 0; i < size - 1; i++, k--) {
+        curr = head;
+        next = curr->next;
+
+        for(j = 1; j < k; j++) {
+            if(curr->data > next->data) {
+                temp_data = curr->data;
+                curr->data = next->data;
+                next->data = temp_data;
+
+                temp_key = curr->key;
+                curr->key = next->key;
+                next->key = temp_key;
+            }
+            curr = curr->next;
+            next = next->next;
+        }
+    }
+}
+
 int main() {
-    insert_last(1, 10);
-    insert_last(2, 20);
-    insert_last(3, 30);
     insert_last(4, 40);
-    struct node* test = delete_at(3);
-    struct node* temp = find(2);
-    printf("%d", temp->key);
+    insert_last(3, 30);
+    insert_last(2, 20);
+    insert_last(1, 10);
+    print_list();
+    sort();
     print_list();
     return 0;
 }
