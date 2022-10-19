@@ -30,8 +30,17 @@ void push(struct stack* stack, int data) {
 }
 
 // pop
-struct stack* stack(struct stack* stack) {
+int pop(struct stack* stack) {
+    int i;
+    if(stack->top == -1) {
+        printf("Stack is empty");
+        return;
+    }
 
+    i = stack->array[stack->top];
+    stack->array[stack->top] == NULL;
+    stack->top--;
+    return i;
 }
 
 // is empty
@@ -48,6 +57,6 @@ int main() {
     struct stack* stack = stack_init(10);
     push(stack, 1);
     push(stack, 2);
-    printf("%i, %i", stack->array[0], stack->array[1]);
+    int i = pop(stack);
     return 0;
 }
