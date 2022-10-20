@@ -22,6 +22,20 @@ struct queue* queue_init(unsigned capacity) {
 // check queue full
 // check queue empty
 // enqueue
+void enqueue(struct queue* queue, int data) {
+    // check if queue is full
+    if(queue->size == queue->capacity) {
+        return;
+    }
+    // formula to sequentially add data
+    queue->rear = (queue->rear + 1) % queue->capacity;
+    // set data
+    queue->array[queue->rear] = data;
+    // increase size of queue
+    queue->size = queue->size + 1;
+    return;
+}
+
 // dequeue
 // get front
 // get rear
