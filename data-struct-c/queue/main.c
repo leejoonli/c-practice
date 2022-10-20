@@ -44,16 +44,33 @@ int dequeue(struct queue* queue) {
     queue->size = queue->size -1;
     return data;
 }
+
 // get front
+int get_front(struct queue* queue) {
+    if(queue->size == 0) {
+        return 1;
+    }
+    return queue->array[queue->front];
+}
+
 // get rear
+int get_rear(struct queue* queue) {
+    if(queue->size == 0) {
+        return 1;
+    }
+    return queue->array[queue->rear];
+}
+
 // get size
+int get_size(struct queue* queue) {
+    return queue->size;
+}
 
 int main()
 {
     struct queue* queue = queue_init(2);
     enqueue(queue, 1);
     enqueue(queue, 2);
-    int temp = dequeue(queue);
-    printf("1: %i, 2: %i, 3: %i", queue->array[0], queue->array[1], temp);
+    printf("front: %i, rear: %i, size: %i", get_front(queue), get_rear(queue), get_size(queue));
     return 0;
 }
