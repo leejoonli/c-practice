@@ -5,7 +5,7 @@ struct queue {
     int front, rear, size;
     unsigned capacity;
     int* array;
-}
+};
 
 // create queue
 struct queue* queue_init(unsigned capacity) {
@@ -19,8 +19,6 @@ struct queue* queue_init(unsigned capacity) {
     return queue;
 }
 
-// check queue full
-// check queue empty
 // enqueue
 void enqueue(struct queue* queue, int data) {
     // check if queue is full
@@ -37,12 +35,25 @@ void enqueue(struct queue* queue, int data) {
 }
 
 // dequeue
+int dequeue(struct queue* queue) {
+    if(queue->size == 0) {
+        return;
+    }
+    int data = queue->array[queue->front];
+    queue->front = (queue->front + 1)% queue->capacity;
+    queue->size = queue->size -1;
+    return data;
+}
 // get front
 // get rear
 // get size
 
 int main()
 {
-    printf("Hello world!\n");
+    struct queue* queue = queue_init(2);
+    enqueue(queue, 1);
+    enqueue(queue, 2);
+    int temp = dequeue(queue);
+    printf("1: %i, 2: %i, 3: %i", queue->array[0], queue->array[1], temp);
     return 0;
 }

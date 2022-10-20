@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1666308462 source:c:\users\jeremiah\c-files\c-practice\data-struct-c\queue\main.c
+	<stdio.h>
+	<stdlib.h>
+
