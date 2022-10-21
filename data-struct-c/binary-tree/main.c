@@ -28,6 +28,13 @@ void insert_right(struct node* node, int data) {
     return;
 }
 
+// insert node
+// search node
+// size from node
+// max node
+// get tree height
+// check balance
+
 int main()
 {
     struct node* test = new_node(1);
