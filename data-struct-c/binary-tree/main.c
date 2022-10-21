@@ -33,6 +33,8 @@ int main()
     struct node* test = new_node(1);
     insert_left(test, 2);
     insert_right(test, 3);
-    printf("top: %i, left: %i, right: %i", test->data, test->left->data, test->right->data);
+    insert_left(test->left, 4);
+    insert_right(test->left, 5);
+    printf("left-top: %i, left-left: %i, left-right: %i", test->left->data, test->left->left->data, test->left->right->data);
     return 0;
 }
