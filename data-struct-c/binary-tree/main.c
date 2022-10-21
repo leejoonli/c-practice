@@ -15,12 +15,24 @@ struct node* new_node(int data) {
     node->right = NULL;
     return node;
 }
+
 // add left
+void insert_left(struct node* node, int data) {
+    node->left = new_node(data);
+    return;
+}
+
 // add right
+void insert_right(struct node* node, int data) {
+    node->right = new_node(data);
+    return;
+}
 
 int main()
 {
     struct node* test = new_node(1);
-    printf("%i", test->data);
+    insert_left(test, 2);
+    insert_right(test, 3);
+    printf("top: %i, left: %i, right: %i", test->data, test->left->data, test->right->data);
     return 0;
 }
