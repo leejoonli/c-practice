@@ -7,6 +7,10 @@ struct node {
     struct node* right;
 };
 
+struct tree {
+    struct node* root;
+};
+
 // new node
 struct node* new_node(int data) {
     struct node* node = (struct node*)malloc(sizeof(struct node));
@@ -14,6 +18,12 @@ struct node* new_node(int data) {
     node->left = NULL;
     node->right = NULL;
     return node;
+}
+
+struct node* new_tree(int data) {
+    struct tree* tree = (struct tree*)malloc(sizeof(struct tree));
+    tree->root = NULL;
+    return tree;
 }
 
 // add left
@@ -29,6 +39,15 @@ void insert_right(struct node* node, int data) {
 }
 
 // insert node
+void insert_node(struct tree* tree, int data) {
+    struct node* node = new_node(data);
+    if(tree->root == NULL) {
+        tree->root = node;
+    }
+    struct node* walker = tree->root;
+
+}
+
 // search node
 // size from node
 // max node
@@ -37,11 +56,8 @@ void insert_right(struct node* node, int data) {
 
 int main()
 {
-    struct node* test = new_node(1);
-    insert_left(test, 2);
-    insert_right(test, 3);
-    insert_left(test->left, 4);
-    insert_right(test->left, 5);
-    printf("left-top: %i, left-left: %i, left-right: %i", test->left->data, test->left->left->data, test->left->right->data);
+    struct node* tree = new_tree(5);
+    insert_node(tree, 4);
+    insert_node(tree, 6);
     return 0;
 }
