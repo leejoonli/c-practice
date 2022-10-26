@@ -7,10 +7,6 @@ struct node {
     struct node* right;
 };
 
-struct tree {
-    struct node* root;
-};
-
 // new node
 struct node* new_node(int data) {
     struct node* node = (struct node*)malloc(sizeof(struct node));
@@ -18,12 +14,6 @@ struct node* new_node(int data) {
     node->left = NULL;
     node->right = NULL;
     return node;
-}
-
-struct node* new_tree() {
-    struct tree* tree = (struct tree*)malloc(sizeof(struct tree));
-    tree->root = NULL;
-    return tree;
 }
 
 // add left
@@ -39,14 +29,14 @@ void insert_right(struct node* node, int data) {
 }
 
 // insert node
-void insert_node(struct tree* tree, int data) {
-    if(tree->root == NULL) {
-        tree->root = new_node(data);
+void insert_node(struct node* root, int data) {
+    if(root == NULL) {
+        root = new_node(data);
         return;
     }
-    struct node* walker = tree->root;
-    printf("%i\n", walker->data);
+    struct node* walker = root;
     printf("%p\n", walker);
+    printf("%p\n", root);
 
     if(data < walker->data) {
         walker = walker->left;
@@ -58,7 +48,7 @@ void insert_node(struct tree* tree, int data) {
 
     walker = new_node(data);
     printf("%p\n", walker);
-    printf("%i\n", walker->data);
+    printf("%p\n", root->left);
     return;
 }
 
@@ -69,9 +59,8 @@ void insert_node(struct tree* tree, int data) {
 // check balance
 
 int main() {
-    struct tree* tree = new_tree();
-    insert_node(tree, 5);
-    insert_node(tree, 4);
-    printf("top: %p", tree->root->left);
+    struct node* root = new_node(5);
+    insert_node(root, 4);
+    printf("left: %p", root->left);
     return 0;
 }
