@@ -20,7 +20,7 @@ struct node* new_node(int data) {
     return node;
 }
 
-struct node* new_tree(int data) {
+struct node* new_tree() {
     struct tree* tree = (struct tree*)malloc(sizeof(struct tree));
     tree->root = NULL;
     return tree;
@@ -40,12 +40,26 @@ void insert_right(struct node* node, int data) {
 
 // insert node
 void insert_node(struct tree* tree, int data) {
-    struct node* node = new_node(data);
     if(tree->root == NULL) {
-        tree->root = node;
+        tree->root = new_node(data);
+        return;
     }
     struct node* walker = tree->root;
+    printf("%i\n", walker->data);
+    printf("%p\n", walker);
 
+    if(data < walker->data) {
+        walker = walker->left;
+        printf("%p\n", walker);
+    }
+    else if(data > walker->data) {
+        walker = walker->right;
+    }
+
+    walker = new_node(data);
+    printf("%p\n", walker);
+    printf("%i\n", walker->data);
+    return;
 }
 
 // search node
@@ -54,10 +68,10 @@ void insert_node(struct tree* tree, int data) {
 // get tree height
 // check balance
 
-int main()
-{
-    struct node* tree = new_tree(5);
+int main() {
+    struct tree* tree = new_tree();
+    insert_node(tree, 5);
     insert_node(tree, 4);
-    insert_node(tree, 6);
+    printf("top: %p", tree->root->left);
     return 0;
 }
