@@ -29,27 +29,21 @@ void insert_right(struct node* node, int data) {
 }
 
 // insert node
-void insert_node(struct node* root, int data) {
+struct node* insert_node(struct node* root, int data) {
     if(root == NULL) {
         root = new_node(data);
         return;
     }
-    struct node* walker = root;
-    printf("%p\n", walker);
-    printf("%p\n", root);
 
-    if(data < walker->data) {
-        walker = walker->left;
-        printf("%p\n", walker);
+    // https://data-flair.training/blogs/binary-tree-in-c/#:~:text=Binary%20Tree%20in%20C%20is,in%20the%20C%20programming%20language.
+    if(data < root->data) {
+        root->left = insert_node(root->left, data);
     }
-    else if(data > walker->data) {
-        walker = walker->right;
+    else if(data > root->data) {
+        root->right = insert_node(root->right, data);
     }
 
-    walker = new_node(data);
-    printf("%p\n", walker);
-    printf("%p\n", root->left);
-    return;
+    return root;
 }
 
 // search node
@@ -61,6 +55,9 @@ void insert_node(struct node* root, int data) {
 int main() {
     struct node* root = new_node(5);
     insert_node(root, 4);
-    printf("left: %p", root->left);
+    insert_node(root, 3);
+    insert_node(root, 6);
+    printf("left: %i, right: %i\n", root->left->data, root->right->data);
+    printf("left-left: %i", root->left->left->data);
     return 0;
 }
