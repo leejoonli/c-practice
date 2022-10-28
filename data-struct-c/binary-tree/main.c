@@ -46,7 +46,30 @@ struct node* insert_node(struct node* root, int data) {
     return root;
 }
 
+// find
+int find(struct node* node, int data, int* ptr_found) {
+    if(node) {
+        if(node->data == data) {
+            *ptr_found = 0;
+            return ptr_found;
+        }
+        find(node->left, data, ptr_found);
+        find(node->right, data, ptr_found);
+    }
+    return ptr_found;
+}
+
 // search node
+int search(struct node* root, int data) {
+    int found = 1;
+    int* ptr_found = &found;
+    if(root == NULL) {
+        return found;
+    }
+    find(root, data, ptr_found);
+    return *ptr_found;
+}
+
 // size from node
 // max node
 // get tree height
@@ -57,7 +80,9 @@ int main() {
     insert_node(root, 4);
     insert_node(root, 3);
     insert_node(root, 6);
-    printf("left: %i, right: %i\n", root->left->data, root->right->data);
-    printf("left-left: %i", root->left->left->data);
+    /*printf("left: %i, right: %i\n", root->left->data, root->right->data);
+    printf("left-left: %i", root->left->left->data);*/
+    int test = search(root, 6);
+    printf("%i", test);
     return 0;
 }
