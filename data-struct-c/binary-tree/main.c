@@ -79,7 +79,27 @@ int size_from(struct node* node) {
     return *ptr_count;
 }
 
+int find_max(struct node* node, int* ptr_max) {
+    if(node) {
+        if(node->data > *ptr_max) {
+            *ptr_max = node->data;
+        }
+        find_max(node->left, ptr_max);
+        find_max(node->right, ptr_max);
+    }
+    return *ptr_max;
+}
+
 // max node
+int get_max(struct node* root)  {
+    if(root == NULL) {
+        return 0;
+    }
+    int max = root->data;
+    int* ptr_max = &max;
+    find_max(root, ptr_max);
+    return *ptr_max;
+}
 // get tree height
 // check balance
 
@@ -93,6 +113,8 @@ int main() {
     int test = search(root, 6);
     /*printf("%i", test);*/
     int count = size_from(root);
-    printf("%i", count);
+    /*printf("%i", count);*/
+    int max = get_max(root);
+    printf("%i", max);
     return 0;
 }
