@@ -16,18 +16,6 @@ struct node* new_node(int data) {
     return node;
 }
 
-// add left
-void insert_left(struct node* node, int data) {
-    node->left = new_node(data);
-    return;
-}
-
-// add right
-void insert_right(struct node* node, int data) {
-    node->right = new_node(data);
-    return;
-}
-
 // insert node
 struct node* insert_node(struct node* root, int data) {
     if(root == NULL) {
