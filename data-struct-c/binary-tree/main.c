@@ -20,7 +20,7 @@ struct node* new_node(int data) {
 struct node* insert_node(struct node* root, int data) {
     if(root == NULL) {
         root = new_node(data);
-        return;
+        return root;
     }
 
     // https://data-flair.training/blogs/binary-tree-in-c/#:~:text=Binary%20Tree%20in%20C%20is,in%20the%20C%20programming%20language.
@@ -39,12 +39,12 @@ int find(struct node* node, int data, int* ptr_found) {
     if(node) {
         if(node->data == data) {
             *ptr_found = 0;
-            return ptr_found;
+            return *ptr_found;
         }
         find(node->left, data, ptr_found);
         find(node->right, data, ptr_found);
     }
-    return ptr_found;
+    return *ptr_found;
 }
 
 // search node
@@ -100,7 +100,28 @@ int get_max(struct node* root)  {
     find_max(root, ptr_max);
     return *ptr_max;
 }
+
+// find height
+int find_height(struct node* node, int* ptr_height) {
+    if(node) {
+        *ptr_height += 1;
+        find_height(node->left, ptr_height);
+        find_height(node->right, ptr_height);
+    }
+    return *ptr_height;
+}
+
 // get tree height
+int height(struct node* root) {
+    if(root == NULL) {
+        return 0;
+    }
+    int height = 0;
+    int* ptr_height = &height;
+    find_height(root, ptr_height);
+    return *ptr_height;
+}
+
 // check balance
 
 int main() {
@@ -109,12 +130,14 @@ int main() {
     insert_node(root, 3);
     insert_node(root, 6);
     /*printf("left: %i, right: %i\n", root->left->data, root->right->data);
-    printf("left-left: %i", root->left->left->data);*/
+    printf("left-left: %i", root->left->left->data);
     int test = search(root, 6);
-    /*printf("%i", test);*/
+    printf("%i", test);
     int count = size_from(root);
-    /*printf("%i", count);*/
+    printf("%i", count);
     int max = get_max(root);
-    printf("%i", max);
+    printf("%i", max);*/
+    int ht = height(root);
+    printf("%i", ht);
     return 0;
 }
