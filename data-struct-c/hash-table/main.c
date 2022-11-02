@@ -8,6 +8,10 @@ struct item {
     int key;
 };
 
+int hash(int key) {
+    return key % SIZE;
+}
+
 int main()
 {
     printf("Hello world!\n");
