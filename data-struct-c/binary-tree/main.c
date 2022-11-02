@@ -122,13 +122,50 @@ int height(struct node* root) {
     return *ptr_height;
 }
 
+// track balance
+int track_balance(struct node* node, int* ptr_balance) {
+    int height_left = height(node->left);
+    int height_right = height(node->right);
+    if(abs(height_left - height_right) <= 1) {
+        *ptr_balance = 0;
+        return *ptr_balance;
+    } else if(abs(height_left - height_right) > 1) {
+        *ptr_balance = 1;
+        return *ptr_balance;
+    }
+}
+
+// traverse tree
+int traverse_tree(struct node* node, int* ptr_balance) {
+    if(node) {
+        if(track_balance(node, ptr_balance) == 1) {
+            *ptr_balance = 1;
+            return *ptr_balance;
+        }
+        traverse_tree(node->left, ptr_balance);
+        traverse_tree(node->right, ptr_balance);
+    }
+    return *ptr_balance;
+}
+
 // check balance
+int check_balance(struct node* root) {
+    int balance = 0;
+    int* ptr_balance = &balance;
+    if(root == NULL) {
+        balance = 1;
+        return balance;
+    }
+    traverse_tree(root, ptr_balance);
+    return balance;
+}
 
 int main() {
     struct node* root = new_node(5);
-    insert_node(root, 4);
-    insert_node(root, 3);
     insert_node(root, 6);
+    insert_node(root, 3);
+    insert_node(root, 2);
+    insert_node(root, 1);
     /*printf("left: %i, right: %i\n", root->left->data, root->right->data);
     printf("left-left: %i", root->left->left->data);
     int test = search(root, 6);
@@ -136,8 +173,10 @@ int main() {
     int count = size_from(root);
     printf("%i", count);
     int max = get_max(root);
-    printf("%i", max);*/
+    printf("%i", max);
     int ht = height(root);
-    printf("%i", ht);
+    printf("%i", ht);*/
+    int balanced = check_balance(root);
+    printf("%i", balanced);
     return 0;
 }
