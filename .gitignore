@@ -24,3 +24,8 @@
 /data-struct-c/binary-tree/binary-tree.cbp
 /data-struct-c/binary-tree/binary-tree.layout
 /data-struct-c/binary-tree/binary-tree.depend
+/data-struct-c/hash-table/bin
+/data-struct-c/hash-table/obj
+/data-struct-c/hash-table/hash-table.cbp
+/data-struct-c/hash-table/hash-table.layout
+/data-struct-c/hash-table/hash-table.depend
