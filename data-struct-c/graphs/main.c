@@ -15,6 +15,8 @@ struct graph {
     struct adj_list* array;
 };
 
+
+
 int main()
 {
     printf("Hello world!\n");
