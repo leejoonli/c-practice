@@ -35,6 +35,12 @@ struct graph* create_graph(int i) {
 }
 
 // function to create new adjacency list node
+struct adj_list* create_adj_list_node(int i) {
+    struct adj_list_node* adj_list_node = (struct adj_list_node*)malloc(sizeof(adj_list_node));
+    adj_list_node->dest = i;
+    adj_list_node->next = NULL;
+    return adj_list_node;
+}
 
 // function to add edge to graph
 
