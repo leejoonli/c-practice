@@ -36,17 +36,55 @@ struct graph* create_graph(int i) {
 
 // function to create new adjacency list node
 struct adj_list* create_adj_list_node(int i) {
+    // allocate memory for node
     struct adj_list_node* adj_list_node = (struct adj_list_node*)malloc(sizeof(adj_list_node));
+    // set struct variables
     adj_list_node->dest = i;
     adj_list_node->next = NULL;
     return adj_list_node;
 }
 
-// function to add edge to graph
+// function to add edge to UNDIRECTED graph
+void add_edge(struct graph* graph, int k, int i) {
+    struct adj_list_node* walker = NULL;
+    struct adj_list_node* new_node = create_adj_list_node(i);
+
+    // set head node to new list node if head node is NULL
+    if(graph->array[k].head == NULL) {
+        graph->array[k].head = new_node;
+    } else {
+        // use walker to traverse until a NULL spot is reached
+        walker = graph->array[k].head;
+        while(walker->next != NULL) {
+            walker = walker->next;
+        }
+        walker->next = new_node;
+    }
+
+    new_node = create_adj_list_node(k);
+
+    if(graph->array[i].head == NULL) {
+        graph->array[i].head = new_node;
+    } else {
+        walker = graph->array[i].head;
+        while(walker->next != NULL) {
+            walker = walker->next;
+        }
+        walker->next = new_node;
+    }
+}
 
 int main() {
     int i = 5;
     struct graph* graph = create_graph(i);
-    printf("%p", graph);
+    add_edge(graph, 0, 1);
+    add_edge(graph, 0, 2);
+    add_edge(graph, 1, 1);
+    add_edge(graph, 1, 2);
+    printf("%i\n", graph->array[0].head->dest);
+    printf("%i\n", graph->array[0].head->next->dest);
+    printf("%i\n", graph->array[1].head->dest);
+    printf("%i\n", graph->array[1].head->next->next->dest);
+    printf("%i\n", graph->array[1].head->next->next->next->dest);
     return 0;
 }
